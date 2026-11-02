@@ -6,10 +6,12 @@
  */
 
 const appEnv = process.env.EXPO_PUBLIC_APP_ENV;
+const supabasePublishableKey = process.env.EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+const legacySupabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY;
 
 export const env = {
   supabaseUrl: process.env.EXPO_PUBLIC_SUPABASE_URL ?? '',
-  supabaseAnonKey: process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY ?? '',
+  supabaseAnonKey: supabasePublishableKey ?? legacySupabaseAnonKey ?? '',
   apiBaseUrl: process.env.EXPO_PUBLIC_API_BASE_URL ?? 'http://localhost:54321/functions/v1',
   appEnv: (appEnv === 'staging' || appEnv === 'production' ? appEnv : 'development') as
     'development' | 'staging' | 'production',

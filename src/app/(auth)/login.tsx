@@ -1,7 +1,9 @@
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, View } from 'react-native';
 
+import { signIn } from '@/features/auth';
+import { isConfigured } from '@/lib/env';
 import { Button, Screen, SectionHeader, TextField } from '@/components/ui';
 import { colors, spacing, typography } from '@/theme';
 
@@ -13,13 +15,28 @@ import { colors, spacing, typography } from '@/theme';
 export default function LoginScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  async function submit() {
+    try {
+      const profile = await signIn(email, password);
+      router.replace(profile.needsOnboarding ? '/(auth)/onboarding' : '/(tabs)/mapa');
+    } catch (error) {
+      Alert.alert(
+        'No se pudo iniciar sesión',
+        error instanceof Error ? error.message : 'Intenta de nuevo.',
+      );
+    }
+  }
 
   return (
     <Screen>
       <SectionHeader
         eyebrow="Pantalla 02"
         title="Iniciar sesión"
-        subtitle="Ingresa con tu correo para continuar."
+        subtitle={
+          isConfigured
+            ? 'Ingresa con tu cuenta de RedSolidaria.'
+            : 'Modo demostración local: se valida que el correo esté registrado.'
+        }
       />
 
       <View style={styles.form}>
@@ -41,11 +58,16 @@ export default function LoginScreen() {
           onChangeText={setPassword}
           hint="Mínimo 8 caracteres."
         />
-        <Button label="Ingresar" onPress={() => router.replace('/(tabs)/mapa')} fullWidth />
+        <Button label="Ingresar" onPress={submit} fullWidth />
         <Button
           label="¿Olvidaste tu contraseña?"
           variant="ghost"
-          onPress={() => router.push('/(auth)/register')}
+          onPress={() =>
+            Alert.alert(
+              'Recuperación de contraseña',
+              'La recuperación por correo se habilitará al conectar Supabase.',
+            )
+          }
         />
       </View>
 

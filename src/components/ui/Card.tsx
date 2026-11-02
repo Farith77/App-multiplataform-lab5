@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import { StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
+import { Pressable, StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 
 import { colors, radius, shadows, spacing, typography } from '@/theme';
 
@@ -9,12 +9,18 @@ type Props = {
   subtitle?: string;
   footer?: ReactNode;
   style?: StyleProp<ViewStyle>;
+  onPress?: () => void;
 };
 
 /** Tarjeta base para donaciones, reservas y métricas de impacto. */
-export function Card({ children, title, subtitle, footer, style }: Props) {
+export function Card({ children, title, subtitle, footer, style, onPress }: Props) {
   return (
-    <View style={[styles.card, style]}>
+    <Pressable
+      disabled={!onPress}
+      onPress={onPress}
+      accessibilityRole={onPress ? 'button' : undefined}
+      style={[styles.card, style]}
+    >
       {(title ?? subtitle) && (
         <View style={styles.header}>
           {title ? <Text style={styles.title}>{title}</Text> : null}
@@ -23,7 +29,7 @@ export function Card({ children, title, subtitle, footer, style }: Props) {
       )}
       {children}
       {footer ? <View style={styles.footer}>{footer}</View> : null}
-    </View>
+    </Pressable>
   );
 }
 

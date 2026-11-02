@@ -1,8 +1,10 @@
 import { useLocalSearchParams, router } from 'expo-router';
-import { StyleSheet, Text, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
 
 import { Badge, Button, Card, Screen, SectionHeader } from '@/components/ui';
-import { MOCK_DONATIONS } from '@/features/donations/mock';
+import { listDonations } from '@/features/donations';
+import type { Donation } from '@/lib/types';
 import { formatDateTime, formatKg, formatPortions } from '@/lib/format';
 import { colors, spacing, typography } from '@/theme';
 
@@ -12,7 +14,21 @@ import { colors, spacing, typography } from '@/theme';
  */
 export default function DonationDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const donation = MOCK_DONATIONS.find((item) => item.id === id) ?? MOCK_DONATIONS[0];
+  const [donation, setDonation] = useState<Donation | null>(null);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    void listDonations()
+      .then((items) => setDonation(items.find((item) => item.id === id) ?? null))
+      .finally(() => setLoading(false));
+  }, [id]);
+
+  if (loading) {
+    return (
+      <Screen>
+        <ActivityIndicator accessibilityLabel="Cargando donación" />
+      </Screen>
+    );
+  }
 
   if (!donation) {
     return (
@@ -25,6 +41,13 @@ export default function DonationDetailScreen() {
   return (
     <Screen>
       <SectionHeader eyebrow="Pantalla 08" title={donation.title} subtitle={donation.donorName} />
+      {donation.photoUrl ? (
+        <Image
+          source={{ uri: donation.photoUrl }}
+          style={styles.hero}
+          accessibilityLabel={`Foto de ${donation.title}`}
+        />
+      ) : null}
 
       <View style={styles.tags}>
         <Badge label={formatKg(donation.quantityKg)} tone="brand" />
@@ -65,4 +88,5 @@ const styles = StyleSheet.create({
   cards: { gap: spacing.sm, marginTop: spacing.lg },
   actions: { gap: spacing.sm, marginTop: spacing.xl },
   note: { ...typography.caption, color: colors.textMuted, marginTop: spacing.lg },
+  hero: { width: '100%', height: 220, borderRadius: 16, marginTop: spacing.md },
 });
