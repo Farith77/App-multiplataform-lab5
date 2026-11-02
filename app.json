@@ -36,7 +36,21 @@
           "backgroundColor": "#0F7B4F"
         }
       ],
-      "expo-font"
+      "expo-font",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "RedSolidaria necesita acceso a tus fotos para adjuntar imágenes de los alimentos.",
+          "cameraPermission": "RedSolidaria necesita acceso a la cámara para fotografiar los alimentos.",
+          "microphonePermission": false
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "RedSolidaria usa tu ubicación para registrar el punto de recojo de la donación."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

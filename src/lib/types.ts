@@ -19,7 +19,9 @@ export type Profile = {
   phone?: string;
   avatarUrl?: string;
   organizationName?: string;
+  address?: string;
   verified: boolean;
+  needsOnboarding?: boolean;
   createdAt: string;
 };
 

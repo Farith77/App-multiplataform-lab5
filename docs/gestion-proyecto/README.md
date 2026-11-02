@@ -18,6 +18,7 @@
 | **Alcance de la entrega** | MVP funcional con 21 requerimientos *Must*, APK/AAB, documentación y video demo |
 | **Metodología** | Scrum adaptado a una iteración corta de 12 días (3 sprints + cierre), con tablero Kanban |
 | **Herramientas** | Git + GitHub, GitHub Projects (tablero), Figma (wireframes), Supabase, Expo EAS, WhatsApp (coordinación diaria) |
+| **Repositorio** | <https://github.com/Farith77/App-multiplataform-lab5> · rama `main` (entregable) y `develop` (integración) |
 | **Entregable final** | Repositorio con código, APK/AAB firmado, manual técnico, manual de usuario, video demo y esta documentación |
 
 ## 2. Índice de documentos

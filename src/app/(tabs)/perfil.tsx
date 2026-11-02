@@ -1,8 +1,11 @@
 import { router } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
+import { useEffect, useState } from 'react';
 
 import { Badge, Button, Card, Screen } from '@/components/ui';
 import { initials } from '@/lib/format';
+import { getCurrentProfile, signOut } from '@/features/auth';
+import type { Profile } from '@/lib/types';
 import { colors, radius, spacing, typography } from '@/theme';
 
 /**
@@ -10,22 +13,41 @@ import { colors, radius, spacing, typography } from '@/theme';
  * HU-04 · RF-05 · Sprint 1 (T-09).
  */
 export default function ProfileScreen() {
+  const [profile, setProfile] = useState<Profile | null>(null);
+  useEffect(() => {
+    void getCurrentProfile().then(setProfile);
+  }, []);
+  const name = profile?.fullName ?? 'Invitado';
   return (
     <Screen>
       <View style={styles.identity}>
         <View style={styles.avatar}>
-          <Text style={styles.avatarText}>{initials('Ana Quispe')}</Text>
+          <Text style={styles.avatarText}>{initials(name)}</Text>
         </View>
         <View style={styles.identityText}>
-          <Text style={styles.name}>Ana Quispe</Text>
-          <Text style={styles.role}>Comedor Popular Virgen de Chapi</Text>
-          <Badge label="Organización verificada" tone="success" />
+          <Text style={styles.name}>{name}</Text>
+          <Text style={styles.role}>
+            {profile?.organizationName ?? profile?.role ?? 'Inicia sesión para ver tu perfil'}
+          </Text>
+          {profile?.role === 'beneficiario' ? (
+            <Badge
+              label={
+                profile.verified
+                  ? 'Organización verificada'
+                  : 'Organización pendiente de verificación'
+              }
+              tone={profile.verified ? 'success' : 'warning'}
+            />
+          ) : null}
         </View>
       </View>
 
       <View style={styles.actions}>
-        <Card title="Datos de contacto" subtitle="ana.quispe@correo.com · 958 112 334" />
-        <Card title="Dirección de recojo" subtitle="Calle Los Andes 220, Arequipa" />
+        <Card title="Datos de contacto" subtitle={profile?.phone ?? 'Sin teléfono registrado'} />
+        <Card
+          title="Dirección de recojo"
+          subtitle={profile?.address ?? 'Sin dirección registrada'}
+        />
         <Card title="Notificaciones" subtitle="Recordatorios de recojo y caducidad activos" />
       </View>
 
@@ -39,7 +61,9 @@ export default function ProfileScreen() {
         <Button
           label="Cerrar sesión"
           variant="ghost"
-          onPress={() => router.replace('/')}
+          onPress={() => {
+            void signOut().then(() => router.replace('/'));
+          }}
           fullWidth
         />
       </View>

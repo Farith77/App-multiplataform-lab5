@@ -1,8 +1,12 @@
 # RedSolidaria
 
+[![CI](https://github.com/Farith77/App-multiplataform-lab5/actions/workflows/ci.yml/badge.svg)](https://github.com/Farith77/App-multiplataform-lab5/actions/workflows/ci.yml)
+
 **Aplicación multiplataforma para el rescate de alimentos y el abastecimiento de comedores populares y ollas comunes.**
 
 Proyecto desarrollado para el curso de **Plataformas Emergentes** con framework multiplataforma **React Native (Expo)**.
+
+**Repositorio:** <https://github.com/Farith77/App-multiplataform-lab5> · `main` (entregable) · `develop` (integración)
 
 **Periodo de ejecución:** miércoles 21/10/2026 → domingo 01/11/2026 (10 jornadas de trabajo + día de entrega).
 
