@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RedSolidaria · Cronograma del proyecto (12 días)</title>
+<style>
+  :root { --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --bg:#f6f8fb; }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:32px; background:var(--bg); color:var(--ink);
+         font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+  .wrap { max-width:1240px; margin:0 auto; background:#fff; border:1px solid var(--line);
+          border-radius:18px; padding:32px 32px 40px; box-shadow:0 10px 30px rgba(15,23,42,.06); }
+  header h1 { margin:0 0 6px; font-size:26px; letter-spacing:-.4px; }
+  header p { margin:0; color:var(--muted); font-size:14px; }
+  .chips { display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 26px; }
+  .chip { font-size:12px; padding:6px 12px; border-radius:999px; background:#f1f5f9; color:#334155;
+          border:1px solid var(--line); }
+  .legend { display:flex; flex-wrap:wrap; gap:18px; margin:0 0 18px; font-size:13px; color:#334155; }
+  .legend span { display:inline-flex; align-items:center; gap:7px; }
+  .dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
+  .gantt { border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+  .ghead { display:grid; grid-template-columns:340px 1fr; background:#0f172a; color:#fff; }
+  .ghead .corner { padding:10px 14px; font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:#cbd5e1; }
+  .days { display:grid; grid-template-columns:repeat(10,1fr); }
+  .dh { padding:8px 4px; text-align:center; font-size:11px; border-left:1px solid #1e293b; line-height:1.35; }
+  .dh b { display:block; font-size:12px; }
+  .dh span { color:#94a3b8; }
+  .dh.week { border-left:3px solid #64748b; }
+  .bands { display:grid; grid-template-columns:340px 1fr; background:#f8fafc; border-bottom:1px solid var(--line); }
+  .bands .lbl { padding:9px 14px; font-size:12px; color:var(--muted); }
+  .band { border-left:1px solid var(--line); padding:9px 10px; font-size:11px; color:#334155;
+          background:#eef2f7; text-align:center; border-right:1px solid #fff; }
+  .band span { display:block; font-weight:600; }
+  .band small { color:var(--muted); }
+  .row { display:grid; grid-template-columns:340px 1fr; border-top:1px solid var(--line); }
+  .row:nth-child(odd) { background:#fcfdff; }
+  .tlabel { padding:9px 14px; display:flex; flex-direction:column; gap:1px; border-right:1px solid var(--line); }
+  .tid { font-size:11px; font-weight:700; letter-spacing:.03em; }
+  .tname { font-size:12.5px; line-height:1.3; }
+  .tmeta { font-size:10.5px; color:var(--muted); }
+  .track { display:grid; grid-template-columns:repeat(10,1fr); align-items:center; padding:6px 0; position:relative; }
+  .track::before { content:""; position:absolute; inset:0;
+    background-image:repeating-linear-gradient(to right, transparent 0, transparent calc(10% - 1px), #eef2f7 calc(10% - 1px), #eef2f7 10%); }
+  .bar { position:relative; height:22px; border-radius:6px; display:flex; align-items:center;
+         justify-content:flex-end; padding-right:6px; margin:0 2px; box-shadow:0 1px 2px rgba(15,23,42,.15); }
+  .bar span { color:#fff; font-size:10.5px; font-weight:600; }
+  table { width:100%; border-collapse:collapse; margin-top:26px; font-size:13px; }
+  th, td { padding:9px 12px; border-bottom:1px solid var(--line); text-align:left; }
+  th { font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); background:#f8fafc; }
+  td b { color:var(--ink); }
+  .milestones { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin-top:26px; }
+  .ms { border:1px dashed #cbd5e1; border-radius:12px; padding:14px 16px; background:#fbfdff; }
+  .ms b { display:block; font-size:13px; }
+  .ms span { font-size:12px; color:var(--muted); }
+  footer { margin-top:26px; font-size:11.5px; color:var(--muted); }
+  @media print { body { background:#fff; padding:0; } .wrap { border:none; box-shadow:none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Cronograma · RedSolidaria</h1>
+    <p>Aplicación multiplataforma de rescate de alimentos · React Native (Expo) · 12 días calendario · Equipo de 3 integrantes</p>
+  </header>
+
+  <div class="chips">
+    <span class="chip"><b>Inicio:</b> miércoles 21/10/2026</span>
+    <span class="chip"><b>Entrega:</b> domingo 01/11/2026</span>
+    <span class="chip"><b>Jornadas de trabajo:</b> 10 + día de entrega</span>
+    <span class="chip"><b>Esfuerzo planificado:</b> 171 h</span>
+    <span class="chip"><b>Capacidad:</b> 180 h (3 × 60 h)</span>
+  </div>
+
+  <div class="legend">
+    <span><i class="dot" style="background:#2563eb"></i>Alan Jorge Garcia Apaza — Líder de proyecto · Arquitecto de software</span><span><i class="dot" style="background:#7c3aed"></i>Frank Ducks Hanccocallo Hachircana — Desarrollador móvil · UI/UX</span><span><i class="dot" style="background:#047857"></i>Vladimir Jaward Hancco Soncco — Backend · Datos · QA/DevOps</span>
+  </div>
+
+  <div class="gantt">
+    <div class="ghead">
+      <div class="corner">Tarea</div>
+      <div class="days"><div class="dh" style="grid-column:1/2"><b>D1</b><span>mié 21</span></div><div class="dh" style="grid-column:2/3"><b>D2</b><span>jue 22</span></div><div class="dh" style="grid-column:3/4"><b>D3</b><span>vie 23</span></div><div class="dh" style="grid-column:4/5"><b>D4</b><span>sáb 24</span></div><div class="dh week" style="grid-column:5/6"><b>D5</b><span>lun 26</span></div><div class="dh" style="grid-column:6/7"><b>D6</b><span>mar 27</span></div><div class="dh" style="grid-column:7/8"><b>D7</b><span>mié 28</span></div><div class="dh" style="grid-column:8/9"><b>D8</b><span>jue 29</span></div><div class="dh" style="grid-column:9/10"><b>D9</b><span>vie 30</span></div><div class="dh" style="grid-column:10/11"><b>D10</b><span>sáb 31</span></div></div>
+    </div>
+    <div class="bands">
+      <div class="lbl">Fases / sprints</div>
+      <div class="days" style="grid-template-columns:repeat(10,1fr)"><div class="band" style="grid-column:1/2"><span>Sprint 0 · Arranque</span><small>21 oct</small></div><div class="band" style="grid-column:2/6"><span>Sprint 1 · Núcleo</span><small>22 – 26 oct</small></div><div class="band" style="grid-column:6/10"><span>Sprint 2 · Logística</span><small>27 – 30 oct</small></div><div class="band" style="grid-column:10/11"><span>Sprint 3 · Cierre</span><small>31 oct</small></div></div>
+    </div>
+    
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#2563eb">T-01</span>
+      <span class="tname">Acta de constitución, alcance y criterios de aceptación</span>
+      <span class="tmeta">Alan · —</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:1/2;background:#2563eb" title="T-01 · Acta de constitución, alcance y criterios de aceptación · 3 h"><span>3 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#047857">T-02</span>
+      <span class="tname">Repositorio, ramas, TypeScript estricto, ESLint/Prettier y CI</span>
+      <span class="tmeta">Vladimir · —</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:1/2;background:#047857" title="T-02 · Repositorio, ramas, TypeScript estricto, ESLint/Prettier y CI · 4 h"><span>4 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#2563eb">T-03</span>
+      <span class="tname">Arquitectura de la solución, modelo de datos y contrato de API</span>
+      <span class="tmeta">Alan · —</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:1/2;background:#2563eb" title="T-03 · Arquitectura de la solución, modelo de datos y contrato de API · 5 h"><span>5 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#7c3aed">T-04</span>
+      <span class="tname">Wireframes de 12 pantallas y sistema de diseño</span>
+      <span class="tmeta">Frank · RNF-01, RNF-09</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:1/3;background:#7c3aed" title="T-04 · Wireframes de 12 pantallas y sistema de diseño · 5 h"><span>5 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#7c3aed">T-05</span>
+      <span class="tname">Setup de Expo, navegación, estructura por features y tema</span>
+      <span class="tmeta">Frank · RNF-03, RNF-07</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:1/3;background:#7c3aed" title="T-05 · Setup de Expo, navegación, estructura por features y tema · 5 h"><span>5 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#047857">T-06</span>
+      <span class="tname">Supabase: tablas, políticas RLS, Storage y datos semilla</span>
+      <span class="tmeta">Vladimir · RF-01, RF-03</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:2/4;background:#047857" title="T-06 · Supabase: tablas, políticas RLS, Storage y datos semilla · 7 h"><span>7 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#7c3aed">T-07</span>
+      <span class="tname">Autenticación y roles (registro, login, recuperación)</span>
+      <span class="tmeta">Frank · RF-01, RF-02</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:2/4;background:#7c3aed" title="T-07 · Autenticación y roles (registro, login, recuperación) · 8 h"><span>8 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#7c3aed">T-08</span>
+      <span class="tname">Onboarding y selección de rol con datos de organización</span>
+      <span class="tmeta">Frank · RF-03</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:3/4;background:#7c3aed" title="T-08 · Onboarding y selección de rol con datos de organización · 4 h"><span>4 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#2563eb">T-09</span>
+      <span class="tname">Perfil editable, foto y datos de contacto</span>
+      <span class="tmeta">Alan · RF-05</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:3/5;background:#2563eb" title="T-09 · Perfil editable, foto y datos de contacto · 5 h"><span>5 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#047857">T-10</span>
+      <span class="tname">API de publicaciones: CRUD, validaciones y carga de imágenes</span>
+      <span class="tmeta">Vladimir · RF-06 a RF-10</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:3/5;background:#047857" title="T-10 · API de publicaciones: CRUD, validaciones y carga de imágenes · 7 h"><span>7 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#7c3aed">T-11</span>
+      <span class="tname">Formulario de publicación con fotos, caducidad y ubicación</span>
+      <span class="tmeta">Frank · RF-06 a RF-08</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:4/6;background:#7c3aed" title="T-11 · Formulario de publicación con fotos, caducidad y ubicación · 8 h"><span>8 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#2563eb">T-12</span>
+      <span class="tname">Listado, filtros por categoría/distancia y búsqueda</span>
+      <span class="tmeta">Alan · RF-11, RF-12</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:5/6;background:#2563eb" title="T-12 · Listado, filtros por categoría/distancia y búsqueda · 5 h"><span>5 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#2563eb">T-13</span>
+      <span class="tname">Mapa de donaciones cercanas y geocodificación inversa</span>
+      <span class="tmeta">Alan · RF-13, RF-14</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:4/6;background:#2563eb" title="T-13 · Mapa de donaciones cercanas y geocodificación inversa · 7 h"><span>7 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#047857">T-14</span>
+      <span class="tname">Pruebas de API, colección Postman y datos de demostración</span>
+      <span class="tmeta">Vladimir · RNF-06</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:5/6;background:#047857" title="T-14 · Pruebas de API, colección Postman y datos de demostración · 5 h"><span>5 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#2563eb">T-15</span>
+      <span class="tname">Demo interna y revisión de avance (Sprint Review 1)</span>
+      <span class="tmeta">Alan · —</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:5/6;background:#2563eb" title="T-15 · Demo interna y revisión de avance (Sprint Review 1) · 2 h"><span>2 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#047857">T-16</span>
+      <span class="tname">Entorno de staging, despliegue y monitoreo básico</span>
+      <span class="tmeta">Vladimir · RNF-05</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:5/6;background:#047857" title="T-16 · Entorno de staging, despliegue y monitoreo básico · 4 h"><span>4 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#047857">T-17</span>
+      <span class="tname">API de reservas, aceptación, rechazo y transición de estados</span>
+      <span class="tmeta">Vladimir · RF-15 a RF-18</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:6/8;background:#047857" title="T-17 · API de reservas, aceptación, rechazo y transición de estados · 7 h"><span>7 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#7c3aed">T-18</span>
+      <span class="tname">UI de detalle, reserva y seguimiento de estados</span>
+      <span class="tmeta">Frank · RF-15 a RF-18</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:6/8;background:#7c3aed" title="T-18 · UI de detalle, reserva y seguimiento de estados · 7 h"><span>7 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#2563eb">T-19</span>
+      <span class="tname">Asignación de voluntario y ejecución del recojo/entrega</span>
+      <span class="tmeta">Alan · RF-19, RF-20</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:7/9;background:#2563eb" title="T-19 · Asignación de voluntario y ejecución del recojo/entrega · 8 h"><span>8 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#047857">T-20</span>
+      <span class="tname">Notificaciones push y recordatorios de recojo/caducidad</span>
+      <span class="tmeta">Vladimir · RF-21, RF-22</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:7/8;background:#047857" title="T-20 · Notificaciones push y recordatorios de recojo/caducidad · 6 h"><span>6 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#2563eb">T-21</span>
+      <span class="tname">Panel de impacto social (kg, porciones, CO₂ evitado)</span>
+      <span class="tmeta">Alan · RF-24, RF-25</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:8/9;background:#2563eb" title="T-21 · Panel de impacto social (kg, porciones, CO₂ evitado) · 6 h"><span>6 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#7c3aed">T-22</span>
+      <span class="tname">Historial de operaciones y valoraciones mutuas</span>
+      <span class="tmeta">Frank · RF-26, RF-27</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:8/10;background:#7c3aed" title="T-22 · Historial de operaciones y valoraciones mutuas · 5 h"><span>5 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#047857">T-23</span>
+      <span class="tname">Moderación, verificación de organizaciones y bitácora</span>
+      <span class="tmeta">Vladimir · RF-04, RF-28 a RF-30</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:8/10;background:#047857" title="T-23 · Moderación, verificación de organizaciones y bitácora · 5 h"><span>5 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#2563eb">T-24</span>
+      <span class="tname">Caché offline y cola de sincronización</span>
+      <span class="tmeta">Alan · RF-31, RF-32</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:8/10;background:#2563eb" title="T-24 · Caché offline y cola de sincronización · 5 h"><span>5 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#7c3aed">T-25</span>
+      <span class="tname">Accesibilidad, i18n es/qu y textos legales</span>
+      <span class="tmeta">Frank · RNF-09, RNF-10</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:9/10;background:#7c3aed" title="T-25 · Accesibilidad, i18n es/qu y textos legales · 4 h"><span>4 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#7c3aed">T-26</span>
+      <span class="tname">Pruebas E2E de flujos críticos y corrección de defectos</span>
+      <span class="tmeta">Frank · RNF-06</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:8/10;background:#7c3aed" title="T-26 · Pruebas E2E de flujos críticos y corrección de defectos · 7 h"><span>7 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#047857">T-27</span>
+      <span class="tname">Endurecimiento de seguridad: RLS, secretos y validaciones</span>
+      <span class="tmeta">Vladimir · RNF-04</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:9/10;background:#047857" title="T-27 · Endurecimiento de seguridad: RLS, secretos y validaciones · 3 h"><span>3 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#047857">T-28</span>
+      <span class="tname">Documentación técnica de la API (OpenAPI)</span>
+      <span class="tmeta">Vladimir · RNF-08</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:9/10;background:#047857" title="T-28 · Documentación técnica de la API (OpenAPI) · 4 h"><span>4 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#2563eb">T-29</span>
+      <span class="tname">Pruebas de aceptación con usuarios (UAT)</span>
+      <span class="tmeta">Alan · —</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:10/11;background:#2563eb" title="T-29 · Pruebas de aceptación con usuarios (UAT) · 4 h"><span>4 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#7c3aed">T-30</span>
+      <span class="tname">Pulido de UI y correcciones derivadas de UAT</span>
+      <span class="tmeta">Frank · —</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:10/11;background:#7c3aed" title="T-30 · Pulido de UI y correcciones derivadas de UAT · 4 h"><span>4 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#047857">T-31</span>
+      <span class="tname">Build APK/AAB, publicación y manual técnico</span>
+      <span class="tmeta">Vladimir · —</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:10/11;background:#047857" title="T-31 · Build APK/AAB, publicación y manual técnico · 5 h"><span>5 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#2563eb">T-32</span>
+      <span class="tname">Manual de usuario, video demo y presentación final</span>
+      <span class="tmeta">Alan · —</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:9/11;background:#2563eb" title="T-32 · Manual de usuario, video demo y presentación final · 5 h"><span>5 h</span></div></div>
+  </div>
+  <div class="row">
+    <div class="tlabel">
+      <span class="tid" style="color:#2563eb">T-33</span>
+      <span class="tname">Retrospectiva y acta de cierre del proyecto</span>
+      <span class="tmeta">Alan · —</span>
+    </div>
+    <div class="track"><div class="bar" style="grid-column:10/11;background:#2563eb" title="T-33 · Retrospectiva y acta de cierre del proyecto · 2 h"><span>2 h</span></div></div>
+  </div>
+  </div>
+
+  <table>
+    <thead><tr><th>Integrante</th><th>Rol</th><th>S0</th><th>S1</th><th>S2</th><th>S3</th><th>Total</th></tr></thead>
+    <tbody><tr><td><span class="dot" style="background:#2563eb"></span>Alan Jorge Garcia Apaza</td><td>Líder de proyecto · Arquitecto de software</td><td>8 h</td><td>19 h</td><td>19 h</td><td>11 h</td><td><b>57 h</b></td></tr><tr><td><span class="dot" style="background:#7c3aed"></span>Frank Ducks Hanccocallo Hachircana</td><td>Desarrollador móvil · UI/UX</td><td>10 h</td><td>20 h</td><td>23 h</td><td>4 h</td><td><b>57 h</b></td></tr><tr><td><span class="dot" style="background:#047857"></span>Vladimir Jaward Hancco Soncco</td><td>Backend · Datos · QA/DevOps</td><td>4 h</td><td>23 h</td><td>25 h</td><td>5 h</td><td><b>57 h</b></td></tr></tbody>
+  </table>
+
+  <div class="milestones">
+    <div class="ms"><b>Hito 1 · D5 (lun 26 oct)</b><span>Sprint Review 1: autenticación, publicación de donaciones, listado y mapa operativos.</span></div>
+    <div class="ms"><b>Hito 2 · D9 (vie 30 oct)</b><span>Cierre de desarrollo: reservas, logística, notificaciones, impacto y pruebas E2E.</span></div>
+    <div class="ms"><b>Hito 3 · D10 (sáb 31 oct)</b><span>Entrega técnica: UAT, APK/AAB, manuales, video demo y acta de cierre.</span></div>
+    <div class="ms"><b>Hito 4 · dom 01 nov</b><span>Sustentación final del proyecto ante el docente.</span></div>
+  </div>
+
+  <footer>Fuente de datos: cronograma.csv · Los valores de carga se calculan automáticamente a partir del backlog.</footer>
+</div>
+</body>
+</html>

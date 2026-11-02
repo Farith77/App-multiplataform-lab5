@@ -1,0 +1,7 @@
+node_modules
+dist
+coverage
+.expo
+package-lock.json
+docs/gestion-proyecto/06-gantt.html
+*.md

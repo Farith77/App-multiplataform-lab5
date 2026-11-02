@@ -1,0 +1,9 @@
+# Normaliza finales de línea a LF para que el CI (Linux) y Windows coincidan.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.ttf binary
+*.otf binary
